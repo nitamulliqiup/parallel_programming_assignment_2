@@ -25,7 +25,8 @@ while running:
     processors_count = multiprocessing.cpu_count()
     chosen_processors = eval(input(f'Chose number of processors from 1 to {processors_count}: '))
     if chosen_processors not in range(1, processors_count + 1):
-        print(f'You chose {chosen_processors}, that is not included in the expected range! We are proceeding with the maximum power.')
+        print(f'You chose {chosen_processors}, '
+              f'that is not included in the expected range! We are proceeding with the maximum power.')
         chosen_processors = processors_count
 
     print(f'Calculating with {chosen_processors} processors...')
@@ -38,7 +39,9 @@ while running:
     end_response = input("Do you want to continue? (Y/N): ")
     diff = end_time - start_time
     mins = int((diff.seconds // 60) % 60)
-    result = {"Number": primes_till, "Processors": chosen_processors, "Start Time": start_time.strftime("%H:%M:%S"), "End Time": end_time.strftime("%H:%M:%S"), "Primes found": prime_count, "Duration in minutes":mins, "Duration in seconds": diff.seconds}
+    result = {"Number": primes_till, "Processors": chosen_processors, "Start Time": start_time.strftime("%H:%M:%S"),
+              "End Time": end_time.strftime("%H:%M:%S"), "Primes found": prime_count,
+              "Duration in minutes":mins, "Duration in seconds": diff.seconds}
     table.append(result)
     if end_response not in ('Y', 'y'):
         running = False
