@@ -43,16 +43,27 @@ while running:
 
     diff = end_time - start_time
     minutes = int((diff.seconds // 60) % 60)
-    result = {"Number": primes_till, "Processors": chosen_processors, "Start Time": start_time.strftime("%H:%M:%S"),
-              "End Time": end_time.strftime("%H:%M:%S"), "Primes found": prime_count,
-              "Duration in minutes":minutes, "Duration in seconds": diff.seconds}
+    # result = {"Number": primes_till, "Processors": chosen_processors, "Start Time": start_time.strftime("%H:%M:%S"),
+    #           "End Time": end_time.strftime("%H:%M:%S"), "Primes found": prime_count,
+    #           "Duration in minutes":minutes, "Duration in seconds": diff.seconds}
+    result = [primes_till, chosen_processors,
+              start_time.strftime("%H:%M:%S"), end_time.strftime("%H:%M:%S"),
+              prime_count, minutes, diff.seconds]
+
     table.append(result)
     if end_response not in ('Y', 'y'):
         running = False
 
-print('*********************************')
-print('Displaying Results')
+print('*********************************\n')
+print('Displaying Results\n')
+
+table_headers = ["Number", "Processors", "Start Time",
+                 "End Time", "Primes Found",
+                 "Duration in minutes", "Duration in seconds"]
+
+row_format = "{:>20}" * len(table_headers)
+print(row_format.format(*table_headers))
 for row in table:
-    print(row)
+    print(row_format.format(*row))
 
 
